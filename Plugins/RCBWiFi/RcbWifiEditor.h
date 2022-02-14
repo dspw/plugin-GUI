@@ -21,7 +21,7 @@ namespace RcbWifiNode
  //       void paintButton(Graphics& g, bool isMouseOver, bool isButtonDown) override;
   //  };
 
-    class RcbWifiEditor : public GenericEditor, public Label::Listener, public ComboBox::Listener
+    class RcbWifiEditor : public GenericEditor, public Label::Listener, public ComboBox::Listener, public Button::Listener, public Timer
     {
 
     public:
@@ -30,7 +30,8 @@ namespace RcbWifiNode
         //~RcbWifiEditor();
 
         /** Button listener callback, called by button when pressed. */
-        void buttonEvent(Button* button);
+       // void buttonEvent(Button* button);
+        void buttonClicked(Button* button);
 
         /** Called by processor graph in beginning of the acqusition, disables editor completly. */
         void startAcquisition();
@@ -39,12 +40,12 @@ namespace RcbWifiNode
         void stopAcquisition();
 
         /** Called when configuration is saved. Adds editors config to xml. */
-        void saveEditorParameters(XmlElement* xml);
+        //void saveEditorParameters(XmlElement* xml);
 
         /** Called when configuration is loaded. Reads editors config from xml. */
-        void loadEditorParameters(XmlElement* xml);
+        //void loadEditorParameters(XmlElement* xml);
 
-        void showControlButtons(bool);
+        //?void showControlButtons(bool);
 
         //ScopedPointer<RcbDrawerButton> rcbDrawerButton;
 
@@ -61,14 +62,24 @@ namespace RcbWifiNode
 
         // Test
        // TextButton testButton{ "Test" };
-        ScopedPointer<UtilityButton> testButton;
-        ScopedPointer<UtilityButton> runRCB;
-        ScopedPointer<UtilityButton> stopRCB;
+
+        //ScopedPointer<UtilityButton> testButton;
+        //ScopedPointer<UtilityButton> runRCB;
+        //ScopedPointer<UtilityButton> stopRCB;
+
+        //std::unique_ptr<UtilityButton> initButton;
+       // std::unique_ptr<ToggleButton> testButton;
+       // std::unique_ptr<UtilityButton> runRCB;
+       // std::unique_ptr<UtilityButton> stopRCB;
         String ipNumStr = "192.168.0.93";
         
 
         // Button that tried to connect to client
-        ScopedPointer<UtilityButton> connectButton;
+        //ScopedPointer<UtilityButton> connectButton;
+        std::unique_ptr<ColorButton> configButton;
+
+      //  std::unique_ptr<TextButton> testButton;
+        ScopedPointer<TextButton>testButton;
 
         
 
@@ -118,7 +129,7 @@ namespace RcbWifiNode
 
         // RCB IP Addr
         ScopedPointer<Label> destIpLabel;
-        ScopedPointer<Label> ipNumLabel;
+        ScopedPointer<Label> rcbIpNumLabel;
 
         // Host IP Addr
         ScopedPointer<Label> hostIpLabel;
@@ -127,6 +138,11 @@ namespace RcbWifiNode
         // Port
         ScopedPointer<Label> portLabel;
         ScopedPointer<Label> portNumLabel;
+
+        // Init
+        ScopedPointer<Label> initLabel;
+        std::unique_ptr<UtilityButton> initButton;
+        //ScopedPointer<Label> portNumLabel;
 
        
   

@@ -20,3 +20,5 @@ add_subdirectory(LfpDisplayNode)
 add_subdirectory(PhaseDetector)
 add_subdirectory(RecordControl)
 add_subdirectory(EphysSocket)
+add_subdirectory(RCBWiFi)
+
