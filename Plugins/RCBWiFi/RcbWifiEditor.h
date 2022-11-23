@@ -54,7 +54,8 @@ namespace RcbWifiNode
         void setEditEnableState(bool enableState);
         IPAddress getCurrentIpAddress();
        
-       
+        String desiredFs;
+        
 
     private:
 
@@ -81,11 +82,9 @@ namespace RcbWifiNode
       //  std::unique_ptr<TextButton> testButton;
         ScopedPointer<TextButton>testButton;
 
-        
-
         // Chans
         ScopedPointer<Label> chanLabel;
-      //  ScopedPointer<TextEditor> chanText;
+      //  ScopedPointer<TextEditor> chanText;  // replaced with comboBox
         ScopedPointer<ComboBox> chanCbox;
 
         // Samples
@@ -94,7 +93,7 @@ namespace RcbWifiNode
 
         // Desired Sample Rate
         ScopedPointer<Label> fsLabel;
-      //  ScopedPointer<TextEditor> fsText;
+      //  ScopedPointer<TextEditor> fsText;  // replaced with comboBox
         ScopedPointer<ComboBox> fsCbox;  // Desired RCB Sample Rate Selection
 
         // Actual Sample Rate
@@ -103,15 +102,18 @@ namespace RcbWifiNode
 
         // RHD Up Bw
         ScopedPointer<Label> upBwLabel;
-        ScopedPointer<TextEditor> upBwText;
+        ScopedPointer<TextEditor> upBwText;   // replaced with comboBox
+        ScopedPointer<ComboBox> upBwCbox;
 
         // RHD Low Bw
         ScopedPointer<Label> lowBwLabel;
-        ScopedPointer<TextEditor> lowBwText;
+        ScopedPointer<TextEditor> lowBwText;  // replaced with comboBox
+        ScopedPointer<ComboBox> lowBwCbox;
 
         // RHD DSP Cutoff
         ScopedPointer<Label> dspCutLabel;
         ScopedPointer<Label> dspCutNumLabel;
+        ScopedPointer<UtilityButton> dspoffsetButton;
 
         // Packet Info - Hit Miss
         ScopedPointer<Label> seqNumLabel;
@@ -124,7 +126,6 @@ namespace RcbWifiNode
 
         // RCB PA Power
         ScopedPointer<Label> paPwrLabel;
-        //ScopedPointer<Label> paPwrNumLabel;
         ScopedPointer<ComboBox> paPwrCbox;
 
         // RCB IP Addr
@@ -139,23 +140,24 @@ namespace RcbWifiNode
         ScopedPointer<Label> portLabel;
         ScopedPointer<Label> portNumLabel;
 
-        // Init
+        // Init Button
         ScopedPointer<Label> initLabel;
         std::unique_ptr<UtilityButton> initButton;
-        //ScopedPointer<Label> portNumLabel;
-
        
-  
+
 
         // Parent node
         RcbWifi* node;
         void timerCallback();
         int timeInt = 0;
+        //int numTsItems[8];
 
         // IP stuff
         //String ipNumStr;
         String triggerChStr;
         String myHostStr;
+        String hostStr;
+        IPAddress myHost;
 
         int eventChToRCB;
         int gateChToRCB;
